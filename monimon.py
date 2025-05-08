@@ -9,7 +9,7 @@ import importlib
 plugins = {}
 for finder, name, ispkg in pkgutil.iter_modules(path=['plugins/plugins']):
     plugins[name] = importlib.import_module(name)
-row_format = "{:<30}{:<10}{:<6}{:<20}"
+row_format = "{:<30} {:<10} {:<6}"
 
 with open('hosts.yaml', 'r') as file:
     hosts = yaml.safe_load(file)
@@ -30,8 +30,8 @@ for host, details in hosts['hosts'].items():
             for argument, value in action[action_name].items():
                 arguments[argument] = value
 
-
         #print(arguments)
         result = getattr(plugins[action_name], action_name)(arguments)
         #print(f"{host}\t{action_name}\t{result[0]}\t{result[1]}")
-        print(row_format.format(host, action_name, result[0], result[1]))
+        print(row_format.format(host, action_name, result[0]))
+        print(f"{result[1]}")

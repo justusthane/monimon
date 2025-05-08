@@ -1,9 +1,8 @@
 from enum import Enum
 class Plugin:
     class Status(Enum):
-        SUCCESS = "Succ
+        SUCCESS = "Succ"
     i = 12345
 
     def f(self):
         return 'hello world'
-

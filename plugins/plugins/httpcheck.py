@@ -3,6 +3,6 @@ import requests
 def httpcheck(arguments):
     try:
         r = requests.head(f"{arguments['endpoint']}")
-        return [True, r.status_code]
+        return ["Success", f"Status code: {r.status_code}"]
     except requests.ConnectionError:
-        return [False, r.status_code]
+        return ["Failure", f"Status code: {r.status_code}"]
