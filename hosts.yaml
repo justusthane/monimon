@@ -6,15 +6,18 @@ hosts:
       - ping
       - httpcheck:
           endpoint: https://webassets.confederationcollege.ca
+      - cert_expiration:
+          endpoint: webassets.confederationcollege.ca
   secureassets:
     hostname: secureassets.confederationcollege.ca
     actions:
       - ping
   cognos-test:
     hostname: cc-cognotest-01.confederationc.on.ca
-    port: 9300
     actions:
       - ping
+      - cert_expiration:
+          endpoint: cc-cognotest-01.confederationc.on.ca:9300
   Solarwinds Service Desk:
     hostname: itsupport.confederationcollege.ca
     actions:

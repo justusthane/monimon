@@ -3,11 +3,11 @@ import yaml
 import pprint
 import json
 import sys
-sys.path.append('plugins')
+sys.path.append('plugins/plugins')
 import pkgutil
 import importlib
 plugins = {}
-for finder, name, ispkg in pkgutil.iter_modules(path=['plugins']):
+for finder, name, ispkg in pkgutil.iter_modules(path=['plugins/plugins']):
     plugins[name] = importlib.import_module(name)
 row_format = "{:<30}{:<10}{:<6}{:<20}"
 
@@ -31,7 +31,7 @@ for host, details in hosts['hosts'].items():
                 arguments[argument] = value
 
 
-        print(arguments)
+        #print(arguments)
         result = getattr(plugins[action_name], action_name)(arguments)
         #print(f"{host}\t{action_name}\t{result[0]}\t{result[1]}")
         print(row_format.format(host, action_name, result[0], result[1]))
