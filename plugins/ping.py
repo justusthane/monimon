@@ -7,7 +7,7 @@ def ping(host):
     if response.returncode == 0:
         return [True, ""]
     elif response.stderr:
-        return [False, response.stderr]
+        return [False, response.stderr.decode("UTF-8")]
     else:
         return [False, ""]
     
