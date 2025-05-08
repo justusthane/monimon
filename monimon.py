@@ -16,5 +16,8 @@ with open('hosts.yaml', 'r') as file:
 
 for host, details in hosts['hosts'].items():
     for action in details['actions']:
+        !!! arguments = {'hostname': }
+
         result = getattr(plugins[action], action)(details['hostname'])
+        #print(f"{host}\t{action}\t{result[0]}\t{result[1]}")
         print(row_format.format(host, action, result[0], result[1]))
