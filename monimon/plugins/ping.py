@@ -1,6 +1,6 @@
 import os
 import subprocess
-import plugin
+import monimon.plugin as plugin
 x = plugin.Plugin()
 def ping(arguments):
     response = subprocess.run(["ping","-c","1",arguments['hostname']], 
