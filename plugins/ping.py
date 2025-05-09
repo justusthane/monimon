@@ -1,7 +1,8 @@
 import os
 import subprocess
 import plugin
-x = plugin.Plugin()
+ping = plugin.Plugin()
+
 def ping(arguments):
     response = subprocess.run(["ping","-c","1",arguments['hostname']], 
                               stdout = subprocess.DEVNULL, stderr = subprocess.PIPE)
