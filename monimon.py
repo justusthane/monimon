@@ -3,13 +3,21 @@ import yaml
 import pprint
 import json
 import sys
-sys.path.append('plugins/plugins')
+sys.path.append('plugins')
 import pkgutil
 import importlib
+from colors import Colors
 plugins = {}
-for finder, name, ispkg in pkgutil.iter_modules(path=['plugins/plugins']):
+for finder, name, ispkg in pkgutil.iter_modules(path=['plugins']):
     plugins[name] = importlib.import_module(name)
 row_format = "{:<30} {:<10} {:<6}"
+
+def translate_status(status):
+    if status:
+        return f"{Colors.GREEN}Success{Colors.END}"
+    else:
+        return f"{Colors.RED}Failure{Colors.END}"
+
 
 with open('hosts.yaml', 'r') as file:
     hosts = yaml.safe_load(file)
@@ -33,5 +41,9 @@ for host, details in hosts['hosts'].items():
         #print(arguments)
         result = getattr(plugins[action_name], action_name)(arguments)
         #print(f"{host}\t{action_name}\t{result[0]}\t{result[1]}")
-        print(row_format.format(host, action_name, result[0]))
-        print(f"{result[1]}")
+        if type(result) is list:
+            print(row_format.format(f"{Colors.BOLD}{host}{Colors.END}", action_name, translate_status(result[0])))
+            print(f"{Colors.YELLOW}{result[1]}{Colors.END}")
+        else:
+            print(row_format.format(host, action_name, translate_status(result)))
+
