@@ -3,7 +3,7 @@ import OpenSSL
 from datetime import datetime,timedelta
 from socket import gaierror
 
-def cert_expiration(args):
+def certexp(args):
     hostname = args['endpoint'].split(":")[0]
     
     try:

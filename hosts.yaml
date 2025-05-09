@@ -6,7 +6,7 @@ hosts:
       - ping
       - httpcheck:
           endpoint: https://webassets.confederationcollege.ca
-      - cert_expiration:
+      - certexp:
           endpoint: webassets.confederationcollege.ca
           expiration_warning_days: 30
   secureassets:
@@ -17,7 +17,7 @@ hosts:
     hostname: cc-cognotest-01.confederationc.on.ca
     actions:
       - ping
-      - cert_expiration:
+      - certexp:
           endpoint: cc-cognotest-01.confederationc.on.ca:9300
           expiration_warning_days: 30
   Solarwinds Service Desk:
@@ -53,6 +53,6 @@ hosts:
   Gitlab:
     hostname: cc-gitlab.confederationcollege.ca
     actions:
-      - cert_expiration:
+      - certexp:
           endpoint: cc-gitlab.confederationcollege.ca
           expiration_warning_days: 30
