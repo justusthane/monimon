@@ -1,0 +1,23 @@
+[project]
+name = "monimon"
+version = "0.0.1"
+authors = [
+  { name="Justus Grunow", email="jg@justus.ws" },
+]
+description = "A dead-simple, extremely pluggable monitoring platform"
+readme = "README.md"
+requires-python = ">=3.13.2"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+
+[project.urls]
+Homepage = "https://github.com/justusthane/monimon"
+Issues = "https://github.com/justusthane/monimon/issues"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

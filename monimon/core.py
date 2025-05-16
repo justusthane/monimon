@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import yaml
 import pprint
 import json
@@ -6,17 +5,9 @@ import sys
 sys.path.append('monimon/plugins')
 import pkgutil
 import importlib
-from monimon.colors import Colors
 plugins = {}
 for finder, name, ispkg in pkgutil.iter_modules(path=['monimon/plugins']):
     plugins[name] = importlib.import_module(name)
-row_format = "{:<30} {:<10} {:<6}"
-
-def format_status(status):
-    if status:
-        return f"{Colors.GREEN}Success{Colors.END}"
-    else:
-        return f"{Colors.RED}Failure{Colors.END}"
 
 def monitor():
     with open('monimon/hosts.yaml', 'r') as file:
@@ -53,29 +44,3 @@ def monitor():
 
             return_list.append(return_dict)
     return return_list
-
-if __name__ == 'app':
-    from flask import Flask
-    app = Flask(__name__)
-
-    @app.route("/")
-    def print_monitor():
-        return "Hello"
-
-elif __name__ == '__main__':
-    for result in monitor():
-        print(row_format.format(f"{Colors.BOLD}{result['host']}{Colors.END}", 
-                                result['action_name'], 
-                                format_status(result['result'])))
-        if 'details' in result:
-            print(f"{Colors.YELLOW}{result['details']}{Colors.END}")
-
-
-
-#print(monitor())
-#if type(result) is list:
-#    print(row_format.format(f"{Colors.BOLD}{host}{Colors.END}", action_name, translate_status(result[0])))
-#    print(f"{Colors.YELLOW}{result[1]}{Colors.END}")
-#else:
-#    print(row_format.format(host, action_name, translate_status(result)))
-
