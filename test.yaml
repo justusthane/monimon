@@ -1,0 +1,8 @@
+---
+hosts:
+  webassets:
+    hostname: webassets.confederationcollege.ca
+    actions:
+      ping
+      httpcheck:
+        endpoint: https://webassets.confederationcollege.ca
